@@ -286,6 +286,12 @@ begin
  Result:=-ord(node=nil);
 end;
 
+
+function ps4_sceKernelPrintBacktraceWithModuleInfo:Integer; SysV_ABI_CDecl;
+begin
+ Result:=0; // stub
+end;
+
 procedure ps4__sceKernelRtldThreadAtexitDecrement(Addr:Pointer); SysV_ABI_CDecl;
 var
  node:TElf_node;
@@ -1220,6 +1226,7 @@ begin
  lib^.set_proc($7FB28139A7F2B17A,@ps4_sceKernelGetModuleInfoFromAddr);
  lib^.set_proc($1D93BBC4EA2CE317,@ps4_sceKernelGetModuleInfoInternal);
  lib^.set_proc($914A60AD722BCFB4,@ps4_sceKernelGetModuleInfo);
+ lib^.set_proc($5A5DA8E6139565DC,@ps4_sceKernelPrintBacktraceWithModuleInfo);
  lib^.set_proc($4694092552938853,@ps4_sceKernelGetModuleInfoForUnwind);
 
  lib^.set_proc($4F3E113540816C62,@ps4__sceKernelRtldThreadAtexitIncrement);
