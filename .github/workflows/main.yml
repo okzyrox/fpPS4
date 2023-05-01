@@ -18,25 +18,25 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Hash
-        shell: cmd
+        shell: bash
         working-directory: ./
         run: echo '%GITHUB_SHA:~0,7%' > tag.inc
 
       - name: Tag
-        shell: cmd
+        shell: bash
         working-directory: ./
         if: startsWith(github.ref, 'refs/tags/')
         run: echo '%GITHUB_REF_NAME%' > tag.inc
 
       - name: Compile
-        shell: cmd
+        shell: bash
         working-directory: ./
         run: |
           lazbuild -B fpPS4.lpi > nul
           strip fpPS4.exe
 
       - name: Download
-        shell: cmd
+        shell: bash
         working-directory: ./
         run: |
           curl -k -L -s https://github.com/red-prig/fpps4-bin/raw/main/ffmpeg.zip -o ffmpeg.zip
@@ -53,7 +53,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Pack
-        shell: cmd
+        shell: bash
         working-directory: ./
         if: startsWith(github.ref, 'refs/tags/')
         run: |
